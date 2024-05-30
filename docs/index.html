@@ -31,6 +31,7 @@
     }
 
 </style>
+<script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
 </head>
 
 <body>
@@ -66,6 +67,7 @@ function parseCSV() {
 			console.log(csvData);
             const parsedData = parseCSVData(csvData); // Implement your parsing logic here
             displayAsTable(parsedData);
+			
         };
         reader.readAsText(file);
     }
@@ -75,11 +77,13 @@ function parseCSVData(csvData) {
     // Implement your CSV parsing logic (e.g., using a library like Papa Parse)
     // Return the parsed data as an array of arrays or objects
     // Example: return Papa.parse(csvData).data;
+	return Papa.parse(csvData);
 }
 
 function displayAsTable(data) {
     // Create an HTML table and display the parsed data
     // Example: render the data in a table format
+	console.log(data)
     const table = document.createElement('table');
     // data.forEach(row => {
     //     const tr = document.createElement('tr');
