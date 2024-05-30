@@ -1,0 +1,96 @@
+
+
+<html>
+<title> Visualizing Numbers </title>
+<head>
+<style>
+    #container {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    hr {
+        height: 2px;
+        background-color:gray;
+    }
+
+    button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 10px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            }
+    
+    .input-text {
+        width: 40px;
+    }
+
+</style>
+</head>
+
+<body>
+<div id="container">
+    <h1> Parse CSV </a></h1>
+    <p>
+      Utils to parse the csv
+        <ul>
+            <i><b>
+                <li>randomized data-driven path.</li>
+              </b></i>
+          </ul>
+    </p>
+
+	<form>
+    <input type="file" id="csvFile" accept=".csv">
+    <button onclick="parseCSV()">Upload and Parse</button>
+	</form>
+
+</div>
+</body>
+<script>
+
+function parseCSV() {
+    const fileInput = document.getElementById('csvFile');
+	console.log("start parsing csv");
+    const file = fileInput.files[0];
+	console.log(file)
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const csvData = e.target.result;
+			console.log(csvData);
+            const parsedData = parseCSVData(csvData); // Implement your parsing logic here
+            displayAsTable(parsedData);
+        };
+        reader.readAsText(file);
+    }
+}
+
+function parseCSVData(csvData) {
+    // Implement your CSV parsing logic (e.g., using a library like Papa Parse)
+    // Return the parsed data as an array of arrays or objects
+    // Example: return Papa.parse(csvData).data;
+}
+
+function displayAsTable(data) {
+    // Create an HTML table and display the parsed data
+    // Example: render the data in a table format
+    const table = document.createElement('table');
+    // data.forEach(row => {
+    //     const tr = document.createElement('tr');
+    //     row.forEach(cell => {
+    //         const td = document.createElement('td');
+    //         td.textContent = cell;
+    //         tr.appendChild(td);
+    //     });
+    //     table.appendChild(tr);
+    // });
+    document.body.appendChild(table);
+}
+</script>
+</html>
