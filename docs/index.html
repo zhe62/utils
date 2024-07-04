@@ -177,7 +177,7 @@
 	  var margin = {
 		  top: 10,
 		  right: 30,
-		  bottom: 30,
+		  bottom: 40,
 		  left: 40
 	  },
 		  width = 360 - margin.left - margin.right,
@@ -258,6 +258,7 @@
       // Implement your CSV parsing logic (e.g., using a library like Papa Parse)
       // Return the parsed data as an array of arrays or objects
       // Example: return Papa.parse(csvData).data;
+	  timestamps = [];
 	  return Papa.parse(csvData, {
 		  complete: function(results) {
 			  row_num = results.data.length;
