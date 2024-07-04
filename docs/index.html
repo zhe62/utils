@@ -38,7 +38,7 @@
 
   <body onload="init()">
 	<div id="container">
-      <h1> Parse Events </a></h1>
+      <h1> Parse Events/Telemetry CSV </a></h1>
 <p>
   Utils to parse the events csv
   <ul>
@@ -54,7 +54,7 @@
   <pre id="fileContent"></pre>
 </form>
 </div>
-<div id="my_dataviz"> Histogram  </div>
+<div id="my_dataviz"> </div>
 </body>
 
 
@@ -175,7 +175,7 @@
 	  console.log(mapped);
 	  // set the dimensions and margins of the graph
 	  var margin = {
-		  top: 10,
+		  top: 30,
 		  right: 30,
 		  bottom: 40,
 		  left: 40
@@ -216,6 +216,12 @@
 	  svg.append("g")
 		  .call(d3.axisLeft(y));
 
+	  let title = "Histogram of Events/Occurrence"
+	  svg.append('text')
+		  .attr('class', 'title')
+		  .attr('y', -10)
+		  .text(title);
+	  
 	  svg.selectAll("mybar")
 		  .data(mapped)
 		  .enter()
