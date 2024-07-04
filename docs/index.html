@@ -29,7 +29,9 @@
       .input-text {
           width: 40px;
       }
-
+	  .flex-container {
+		  display: flex;
+	  }
 	</style>
 	<script src="https://unpkg.com/papaparse@latest/papaparse.min.js"></script>
 	<!-- <script src="d3.v4.min.js"></script> -->
@@ -51,11 +53,15 @@
 
 <form>
   <input type="file" id="csvFile" name="file">
-  <button id="draw_btn" type="button" onclick="drawHist()">Upload and Parse</button>
+  <button id="draw_btn" type="button" onclick="drawHist()">Draw Overall Hist</button>
+  <button id="draw_startup_btn" type="button" onclick="drawStartupHist()">Draw Startup Hist</button>
   <pre id="fileContent"></pre>
 </form>
 </div>
-<div id="my_dataviz"> </div>
+<div class="flex-container">
+	<div id="my_dataviz"> </div>
+	<div id="startup_dataviz"> </div>
+</div>
 </body>
 
 </html>
