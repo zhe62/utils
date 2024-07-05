@@ -149,7 +149,8 @@ function drawScatter(input_data, label_array, div_id, title)
 	var	legendMargin = {left: 5, top: 10, right: 5, bottom: 10},
 		legendWidth = 160,
 		legendHeight = 270;
-		
+
+	d3.select("#legend").select("svg").remove();
 	var svgLegend = d3.select("#legend").append("svg")
 				.attr("width", (legendWidth + legendMargin.left + legendMargin.right))
 				.attr("height", (legendHeight + legendMargin.top + legendMargin.bottom));			
