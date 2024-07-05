@@ -53,13 +53,13 @@ function drawStartupHist()
 
 function drawScatterTest()
 {
-	var endDateValue = document.getElementById('endDate').value;
-	[year, month, day] = endDateValue.split("-");
-	endDate = year + "-"  + month +"-"+day; // Format as "YYYY-MM"
+	// var endDateValue = document.getElementById('endDate').value;
+	// [year, month, day] = endDateValue.split("-");
+	// endDate = year + "-"  + month +"-"+day; // Format as "YYYY-MM"
 	
-	var startDateValue = document.getElementById('startDate').value;
-	var [year, month, day] = startDateValue.split("-");
-	startDate = year + "-"  + month +"-"+day; // Format as "YYYY-MM"
+	// var startDateValue = document.getElementById('startDate').value;
+	// var [year, month, day] = startDateValue.split("-");
+	// startDate = year + "-"  + month +"-"+day; // Format as "YYYY-MM"
 
 	var event = new Event('change');
 	document.getElementById('csvFile').dispatchEvent(event);
@@ -384,6 +384,7 @@ function d3ParseFile(){
 	var volt_err_cnt = 0;
 	var total_events_cnt = 0;
 	console.log("date_cur:"+date_cur)
+	realEventsData = [];
 	for(i=0;i<data.length;i++)
 	{
 		if(data[i].RowKey<startDate)
