@@ -143,7 +143,7 @@ function drawScatter(input_data, label_array, div_id, title)
 		.attr("class", "y label")
 		.attr("text-anchor", "end")
 		.attr("transform", "translate(-35,25)rotate(-90)")
-		.text("Averaged Fail Rate");
+		.text("Err/Event Percentage");
 
 	// legend
 	var	legendMargin = {left: 5, top: 10, right: 5, bottom: 10},
