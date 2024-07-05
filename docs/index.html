@@ -54,17 +54,18 @@
 </p>
 
 <form>
-  <input type="file" id="csvFile" name="file">
-  <div>
-  <button id="draw_btn" type="button" onclick="drawHist()">Draw Overall Hist</button>
-  <button id="draw_startup_btn" type="button" onclick="drawStartupHist()">Draw Startup Hist</button>
-  </div>
-  <div >
+    <div >
 	<label for="startDate">Start Date:</label>
     <input type="date" id="startDate">
     <label for="endDate">End Date:</label>
     <input type="date" id="endDate"> </div>
-	<button id="draw_scatter_btn" type="button" onclick="drawScatterTest()">Draw Scatter</button>
+	<input type="file" id="csvFile" name="file">
+</div>
+
+<div>
+  <button id="draw_btn" type="button" onclick="drawHist()">Draw Overall Hist</button>
+  <button id="draw_startup_btn" type="button" onclick="drawStartupHist()">Draw Startup Hist</button>
+  	<button id="draw_scatter_btn" type="button" onclick="drawScatterTest()">Draw Scatter</button>
   </div>
   <pre id="fileContent"></pre>
 </form>
