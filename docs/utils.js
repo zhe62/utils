@@ -53,7 +53,16 @@ function drawStartupHist()
 
 function drawScatterTest()
 {
+	var endDateValue = document.getElementById('endDate').value;
+	[year, month, day] = endDateValue.split("-");
+	endDate = year + "-"  + month +"-"+day; // Format as "YYYY-MM"
+	
+	var startDateValue = document.getElementById('startDate').value;
+	var [year, month, day] = startDateValue.split("-");
+	startDate = year + "-"  + month +"-"+day; // Format as "YYYY-MM"
 
+	var event = new Event('change');
+	document.getElementById('csvFile').dispatchEvent(event);
 	console.log("start date:"+ startDate)
 	dates = getLinearlySpacedDates(startDate, endDate, 0);
 	console.log("sampled dates:"+dates);
