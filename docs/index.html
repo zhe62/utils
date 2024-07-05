@@ -53,15 +53,28 @@
 
 <form>
   <input type="file" id="csvFile" name="file">
+  <div>
   <button id="draw_btn" type="button" onclick="drawHist()">Draw Overall Hist</button>
   <button id="draw_startup_btn" type="button" onclick="drawStartupHist()">Draw Startup Hist</button>
+  </div>
+  <div >
+	<label for="startDate">Start Date:</label>
+    <input type="date" id="startDate">
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate"> </div>
+	<button id="draw_scatter_btn" type="button" onclick="drawScatterTest()">Draw Scatter</button>
+  </div>
   <pre id="fileContent"></pre>
 </form>
 </div>
 <div class="flex-container">
 	<div id="my_dataviz"> </div>
 	<div id="startup_dataviz"> </div>
-</div>
+	<div id="scatter_dataviz"> </div>
+	<div id = "legend" class="col-sm-3">
+	  <div class="legendTitle" style="font-size: 12px;">REGION</div>
+	  <div id="legend"></div>
+	</div>
 </body>
 
 </html>
