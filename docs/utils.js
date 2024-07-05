@@ -101,7 +101,7 @@ function drawScatter(input_data, label_array, div_id, title)
 	var color = d3.scaleOrdinal()
 		.range(["#EFB605", "#E58903", "#E01A25", "#C20049", "#991C71", "#66489F", "#2074A0", "#10A66E", "#7EB852"])
 		.domain(["fpga status error", "swirscan error", "darkcal error", " motor error", 
-				 "voltage error", "data lost error", "panslip error", "panhome error",  "restart"]);
+				 "voltage error", "data lost error", "TEC error", "panhome error",  "restart"]);
 
 	// append the svg object to the body of the page
 	var svg = d3.select(div_id)
@@ -382,6 +382,7 @@ function d3ParseFile(){
 	var darkcal_err_cnt = 0;
 	var fpgastatus_err_cnt = 0;
 	var volt_err_cnt = 0;
+	var tec_err_cnt = 0;
 	var total_events_cnt = 0;
 	console.log("date_cur:"+date_cur)
 	realEventsData = [];
@@ -405,7 +406,9 @@ function d3ParseFile(){
 				fpgastatus_err_cnt++;
 			if(data[i].Subject=="CameraApp" && data[i].Verb == "find" && data[i].Object=="voltage" && data[i].Status=="error")
 				volt_err_cnt++;
-				
+
+			if(data[i].Subject=="FPGA" && data[i].Verb == "find" && data[i].Object=="tec_temperature" && data[i].Status=="error")
+				tec_err_cnt++;
 		} else
 		{
 			if(restart_cnt!=0)
@@ -433,12 +436,19 @@ function d3ParseFile(){
 				realEventsData.push({"eventClass":"voltage error", "rate":volt_err_cnt/total_events_cnt, "date":date_cur, "count":volt_err_cnt});
 			}
 
+			if(tec_err_cnt!=0)
+			{
+				realEventsData.push({"eventClass":"TEC error", "rate":tec_err_cnt/total_events_cnt, "date":date_cur, "count":tec_err_cnt});
+			}
+
+			
 			date_cur = data[i].RowKey.substring(0,10);
 			restart_cnt = 0;
 			swir_err_cnt = 0;
 			darkcal_err_cnt = 0;
 			fpgastatus_err_cnt = 0;
 			volt_err_cnt = 0;
+			tec_err_cnt = 0;
 			total_events_cnt = 0;
 
 		}
