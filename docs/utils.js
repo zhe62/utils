@@ -374,7 +374,7 @@ function d3ParseFile(){
 	const keys = Object.keys(dataValues)
 	event_table_keys = keys;
 	console.log("d3parsed:"+keys);
-	console.log("d3parse:"+data)
+	// console.log("d3parse:"+data)
 	// loop over events
 	var date_cur = data[0].RowKey.substring(0,10);
 	var restart_cnt = 0;
@@ -387,10 +387,16 @@ function d3ParseFile(){
 	var total_events_cnt = 0;
 	console.log("date_cur:"+date_cur)
 	realEventsData = [];
+	data.sort(function(a,b) {
+              return d3.descending(a.RowKey, b.RowKey);
+    });
+	
 	for(i=0;i<data.length;i++)
 	{
 		if(data[i].RowKey<startDate)
 			continue;
+
+		console.log(data[i])
 		if(data[i].Subject=="imx6" && data[i].Verb == "find" && data[i].Object=="firmware_version" && data[i].Callee=="camera_app")
 			startup_timestamps.push(data[i].RowKey);
 
@@ -399,17 +405,22 @@ function d3ParseFile(){
 			total_events_cnt++;
 			if(data[i].Subject=="imx6" && data[i].Verb == "find" && data[i].Object=="firmware_version" && data[i].Callee=="camera_app")
 				restart_cnt++;
+			
 			if(data[i].Subject=="FPGA" && data[i].Verb == "swirscan" && data[i].Status=="error")
 				swir_err_cnt++;
-			if(data[i].Subject=="CameraApp" && data[i].Verb == "find" && data[i].Object=="darkcal" && data[i].Status=="error")
+			
+			if(data[i].Subject=="CameraApp" && data[i].Verb == "find" && data[i].Object=="darkcal")
 				darkcal_err_cnt++;
+			
 			if(data[i].Subject=="FPGA" && data[i].Verb == "check" && data[i].Object=="status" && data[i].Status=="error")
 				fpgastatus_err_cnt++;
+			
 			if(data[i].Subject=="CameraApp" && data[i].Verb == "find" && data[i].Object=="voltage" && data[i].Status=="error")
 				volt_err_cnt++;
 
 			if(data[i].Subject=="FPGA" && data[i].Verb == "find" && data[i].Object=="tec_temperature" && data[i].Status=="error")
 				tec_err_cnt++;
+			
 			if( data[i].Object=="data" && data[i].Status=="error")
 				data_err_cnt++;
 		} else
@@ -427,6 +438,7 @@ function d3ParseFile(){
 			if(darkcal_err_cnt!=0)
 			{
 				realEventsData.push({"eventClass":"darkcal error", "rate":darkcal_err_cnt/total_events_cnt, "date":date_cur, "count":darkcal_err_cnt});
+				console.log("darkcal:"+darkcal_err_cnt)
 			}
 
 			if(fpgastatus_err_cnt!=0)
@@ -468,7 +480,7 @@ function d3ParseFile(){
 	 // "date":"2024-01-15"},
 
 	// console.log("d3parsed row 1:"+data[1])
-	console.log("d3parsed startups:"+startup_timestamps)
+	// console.log("d3parsed startups:"+startup_timestamps)
 	
 }
 
