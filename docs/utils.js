@@ -56,7 +56,7 @@ function drawScatterTest()
 
 	console.log("start date:"+ startDate)
 	dates = getLinearlySpacedDates(startDate, endDate, 0);
-	console.log(dates);
+	console.log("sampled dates:"+dates);
 	// drawScatter(simulatedData, dates, "#scatter_dataviz", "Events ScatterPlot");
 	drawScatter(realEventsData, dates, "#scatter_dataviz", "Events ScatterPlot");
 }
@@ -364,8 +364,8 @@ function d3ParseFile(){
 	const [dataValues] = d3.values(data)
 	const keys = Object.keys(dataValues)
 	event_table_keys = keys;
-	// console.log("d3parsed:"+keys);
-	// console.log("d3parse:"+data)
+	console.log("d3parsed:"+keys);
+	console.log("d3parse:"+data)
 	// loop over events
 	var date_cur = data[0].RowKey.substring(0,10);
 	var restart_cnt = 0;
@@ -376,6 +376,8 @@ function d3ParseFile(){
 	console.log("date_cur:"+date_cur)
 	for(i=0;i<data.length;i++)
 	{
+		if(data[i].RowKey<startDate)
+			continue;
 		if(data[i].Subject=="imx6" && data[i].Verb == "find" && data[i].Object=="firmware_version" && data[i].Callee=="camera_app")
 			startup_timestamps.push(data[i].RowKey);
 
